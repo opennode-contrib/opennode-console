@@ -2,7 +2,8 @@ Ext.BLANK_IMAGE_URL = 'ext-4.0/resources/themes/images/default/tree/s.gif';
 
 Ext.Loader.setConfig('paths', {
     'Ext': 'ext-4.0/src',
-    'Onc': './app/Onc'
+    'Onc': './app/Onc',
+    'Ext.ux': 'ext-4.0/examples/ux'
 });
 
 Ext.Ajax.timeout = 200000;
@@ -44,7 +45,7 @@ Ext.application({
     name: 'Onc',
 
     appFolder: 'app',
-    controllers: ['LoginController', 'MainController', 'ComputeController', 'NewVmController']
+    controllers: ['LoginController', 'MainController', 'ComputeController', 'NewVmController', 'ZabbixRegistrationController']
 });
 
 Ext.override(Ext.Base, {
