@@ -1,5 +1,12 @@
 Ext.BLANK_IMAGE_URL = 'ext-4.0/resources/themes/images/default/tree/s.gif';
 
+Ext.onReady(function() {
+  setTimeout(function(){
+    Ext.get('loading').remove();
+    Ext.get('loading-mask').fadeOut({remove:true});
+  }, 250);
+});
+
 Ext.Loader.setConfig('paths', {
     'Ext': 'ext-4.0/src',
     'Onc': './app/Onc',
@@ -15,6 +22,7 @@ Ext.syncRequire([
     'Ext.XTemplate',
     'Ext.form.*',
 
+    'Onc.widgets.Tagger',
     'Onc.widgets.Gauge',
     'Onc.widgets.Shell',
     'Onc.widgets.Vnc',
@@ -34,6 +42,7 @@ Ext.syncRequire([
     'Onc.Proxy',
     'Onc.util.Scheduler',
     'Onc.hub.Hub',
+    'Onc.hub.Subscription',
     'Onc.hub.Sync'
 ]);
 

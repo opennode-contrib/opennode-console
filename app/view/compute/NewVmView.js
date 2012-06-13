@@ -5,7 +5,7 @@ Ext.define('Onc.view.compute.NewVmView', {
     title: 'New Virtual Machine',
     modal: true,
     border: false,
-    width: 300,
+    width: 500,
     resizable: false,
 
     defaults: {
@@ -15,8 +15,7 @@ Ext.define('Onc.view.compute.NewVmView', {
     },
 
     /**
-     * The parent compte whose virtualization container to create the
-     * virtual machine in.
+     * The parent compute where the VM will be created.
      */
     parentCompute: null,
 
@@ -30,7 +29,7 @@ Ext.define('Onc.view.compute.NewVmView', {
         var min = comp.minValue;
         var max = comp.maxValue;
 
-        if(stdef === undefined || stdef === null)
+        if(stdef === -1 || stdef === undefined || stdef === null)
             stdef = comp.value;
         else
             stdef *= multiplier === undefined || multiplier === null ? 1 : multiplier;
@@ -41,7 +40,7 @@ Ext.define('Onc.view.compute.NewVmView', {
 
     setValue: function(cName, stValue){
         var value = this.st.get(stValue);
-        if(value !== undefined && value !== null)
+        if(value !== -1 && value !== undefined && value !== null)
             Ext.getCmp(cName).setValue(value);
     },
 
@@ -61,12 +60,12 @@ Ext.define('Onc.view.compute.NewVmView', {
         var min = this.st.get(stMin);
         var max = this.st.get(stMax);
 
-        if(min !== undefined && min !== null)
+        if(min !== -1 && min !== undefined && min !== null)
             component.setMinValue(Math.min (min, parentValue) * multiplier);
         else
             component.setMinValue(parentValue * multiplier);
 
-        if(max !== undefined && max !== null)
+        if(max !== -1 && max !== undefined && max !== null)
             component.setMaxValue(Math.min (max, parentValue) * multiplier);
         else
             component.setMaxValue(parentValue * multiplier);
@@ -85,21 +84,21 @@ Ext.define('Onc.view.compute.NewVmView', {
             var tooltipMap = {
                     'template': 'Choose VM template',
 
-                    'num_cores': 'Maximum number of cores',
-                    'num_cores_slider': 'Maximum number of cores',
-                    'cpu_limit': 'Maximum CPU usage',
-                    'cpu_limit_slider': 'Maximum CPU usage',
-                    'memory': 'Maximum memory usage',
-                    'memory_slider': 'Maximum memory usage',
-                    'diskspace': 'Maximum disk space',
-                    'diskspace_slider': 'Maximum disk space',
+                    'num_cores': 'Number of cores',
+                    'num_cores_slider': 'Number of cores',
+                    'cpu_limit': 'CPU usage limit',
+                    'cpu_limit_slider': 'CPU usage limit',
+                    'memory': 'Assigned RAM',
+                    'memory_slider': 'Assigned RAM',
+                    'diskspace': 'Assigned disk space',
+                    'diskspace_slider': 'Assigned disk space',
 
                     'hostname': 'Hostname',
-                    'ipv4_address': 'IP v4 adress',
-                    'dns1': 'Domain Name Server',
+                    'ipv4_address': 'IPv4 address',
+                    'dns1': 'Main Domain Name Server',
                     'dns2': 'Alternative Domain Name Server',
-                    'root_password': 'OS root password',
-                    'root_password_repeat': 'Repeat OS root password',
+                    'root_password': 'Root password',
+                    'root_password_repeat': 'Repeat root password',
 
                     'start_on_boot': 'Start VM on boot'
             };
@@ -352,6 +351,18 @@ Ext.define('Onc.view.compute.NewVmView', {
                         id: 'start_on_boot',
                         fieldLabel: "Start on boot"
                  }]
+            }, {
+                xtype: 'fieldset',
+                title: "Tags",
+                padding: 5,
+                items: [{
+                        id: 'tagger',
+                        itemId: 'tagger',
+                        xtype: 'tagger',
+                        suggestions:  ['infrastructure', 'staging', 'development', 'production'],
+                        tags: ['development']
+                 }]
+
             }],
 
             buttons: [{
