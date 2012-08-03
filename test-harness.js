@@ -2,6 +2,7 @@ var Harness = Siesta.Harness.Browser.ExtJS;
 
 Harness.configure({
     title: 'ONC Test Suite',
+    overrideSetTimeout: false,
 
     preload: [
         "lib/ext-4.1/resources/css/ext-all.css",
@@ -32,6 +33,11 @@ Harness.configure({
 Harness.start({
     group: 'Sanity',
     items: [
-        'tests/010_sanity.t.js'
+        'tests/010_sanity.t.js',
+    ]
+}, {
+    group: 'Integration',
+    items: [
+        'tests/020_logging.t.js'
     ]
 });
