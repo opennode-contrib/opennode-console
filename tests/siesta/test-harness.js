@@ -33,11 +33,11 @@ Harness.configure({
 Harness.start({
     group: 'Sanity',
     items: [
-        'tests/010_sanity.t.js',
+        'tests/siesta/010_sanity.t.js',
     ]
 }, {
     group: 'Integration',
     items: [
-        'tests/020_logging.t.js'
+        'tests/siesta/020_logging.t.js'
     ]
 });
