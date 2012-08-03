@@ -38,6 +38,7 @@ Ext.define('Onc.core.Backend', {
                     (response.status === 0 && response.responseText.length === 0)
                 )) {
                     this.fireEvent('loginrequired');
+                    callbackFn.apply(window, arguments);
                 } else {
                     var result;
                     try {
