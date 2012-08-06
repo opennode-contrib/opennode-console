@@ -38,6 +38,11 @@ Harness.start({
 }, {
     group: 'Integration',
     items: [
-        'tests/siesta/020_logging.t.js'
+        'tests/siesta/020_integration_logging.t.js'
+    ]
+}, {
+    group: 'UI',
+    items: [
+        'tests/siesta/030_ui_logging.t.js'
     ]
 });

@@ -1,5 +1,5 @@
 StartTest(function(t) {
-    t.diag("Login test");
+    t.diag("Integration Login test");
 
     var async = t.beginAsync();
     t.waitForAjaxRequest(function() {
