@@ -8,6 +8,14 @@ Ext.define('Onc.controller.LoginController', {
 
     _viewport: null,
 
+
+    busListeners: {
+        doLogout: function(){
+            this._logout();
+        }
+    },
+
+
     init: function() {
         Onc.core.Backend.on('loginrequired', this._login.bind(this));
 
@@ -22,14 +30,13 @@ Ext.define('Onc.controller.LoginController', {
                 login: function(token) {
                     this._onAuth();
                 }.bind(this)
-            },
-            '#logout-button': {
-                click: function() {
-                    Onc.core.Backend.request('GET', 'logout');
-                    this._login();
-                }
             }
         });
+    },
+
+    _logout: function() {
+        Onc.core.Backend.request('GET', 'logout');
+        this._login();
     },
 
     _login: function() {

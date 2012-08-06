@@ -111,6 +111,11 @@ Ext.define('Onc.controller.MainController', {
                     this.logViewer.setVisible(!this.logViewer.isVisible());
                     log.info('Log viewer displayed');
                 }
+            },
+            '#logout-button': {
+                click: function() {
+                    this.fireBusEvent('doLogout');
+                }
             }
         });
     }
